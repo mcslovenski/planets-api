@@ -82,37 +82,6 @@ def db_seed():
 
 
 # endpoints
-# practice endpoints
-
-@app.route('/')
-def hello_world():
-    return "Hello world!"
-
-
-@app.route('/super_simple')
-def super_simple():
-    return jsonify(message="Hello from super_simple", number=8)
-
-
-@app.route('/parameters')
-def param_search():
-    name = request.args.get("name")
-    age = int(request.args.get("age"))
-    if age < 18:
-        return jsonify(message="not old enough"), 401
-    else:
-        return jsonify(message="Welcome, " + name), 200
-
-
-@app.route('/url_variables/<string:name>/<int:age>')
-def url_variables(name: str, age: int):
-    if age < 18:
-        return jsonify(message="not old enough"), 401
-    else:
-        return jsonify(message="Welcome, " + name), 200
-
-
-# planets app endpoints
 # registration, login, and forgotten password
 
 @app.route('/register', methods=['POST'])
@@ -231,7 +200,7 @@ def remove_planet(id: int):
         return jsonify(message=f"Sorry, there is no planet with id {id}"), 404
 
 
-# database models
+# database schemas
 
 class User(db.Model):
     __tablename__ = 'Users'
